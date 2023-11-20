@@ -22,7 +22,9 @@ func New(storagePath string) (*Storage, error) {
 	if err != nil {
 		return nil, fmt.Errorf("%s: %w", op, err)
 	}
-	stmt, err := db.Prepare(`CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY,username TEXT NOT NULL UNIQUE,password BLOB NOT NULL,presstimes BLOB NOT NULL,intervaltimes BLOB NOT NULL);
+	stmt, err := db.Prepare(`CREATE TABLE IF NOT EXISTS users 
+(id INTEGER PRIMARY KEY,username TEXT NOT NULL UNIQUE,password BLOB NOT NULL,presstimes BLOB NOT NULL
+,intervaltimes BLOB NOT NULL);
 CREATE INDEX IF NOT EXISTS username_index ON users (username);	
 `)
 	if err != nil {
